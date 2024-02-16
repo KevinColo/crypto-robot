@@ -5,7 +5,7 @@ sudo apt install pip -y
 touch cronlog.log
 
 echo Installation des packages nécessaires...
-cd Live-Tools-V2
+cd crypto-robot
 sudo apt-get install python3-venv
 python3 -m venv .venv
 source .venv/bin/activate
