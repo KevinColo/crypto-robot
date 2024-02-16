@@ -16,144 +16,24 @@ async def main():
     account = ACCOUNTS["bitget1"]
 
     margin_mode = "isolated"  # isolated or crossed
-    exchange_leverage = 3
+    exchange_leverage = 2
 
     tf = "1h"
-    size_leverage = 3
+    size_leverage = 2
     sl = 0.3
     params = {
         "BTC/USDT": {
             "src": "close",
             "ma_base_window": 7,
             "envelopes": [0.07, 0.1, 0.15],
-            "size": 0.1,
+            "size": 0.5,
         },
         "ETH/USDT": {
             "src": "close",
             "ma_base_window": 5,
             "envelopes": [0.07, 0.1, 0.15],
-            "size": 0.1,
-        },
-        "ADA/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.09, 0.12, 0.15],
-            "size": 0.1,
-        },
-        "AVAX/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.09, 0.12, 0.15],
-            "size": 0.1,
-        },
-        "EGLD/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "KSM/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "OCEAN/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "REN/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "ACH/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "APE/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "CRV/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "DOGE/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "ENJ/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "FET/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "ICP/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "IMX/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "LDO/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "MAGIC/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "REEF/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "SAND/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "TRX/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
-        "XTZ/USDT": {
-            "src": "close",
-            "ma_base_window": 5,
-            "envelopes": [0.07, 0.1, 0.15, 0.2],
-            "size": 0.05,
-        },
+            "size": 0.5,
+        }
     }
 
     exchange = PerpBitget(
@@ -213,7 +93,7 @@ async def main():
 
             df_list[pair] = df
 
-        
+
 
         usdt_balance = await exchange.get_balance()
         usdt_balance = usdt_balance.total
@@ -375,7 +255,7 @@ async def main():
                         error=False,
                     )
                 )
-            
+
 
         print(f"Placing {len(tasks_close)} close SL / limit order...")
         await asyncio.gather(*tasks_close)  # Limit orders when in positions
